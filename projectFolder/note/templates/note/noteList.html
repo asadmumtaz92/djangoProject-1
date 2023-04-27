@@ -4,8 +4,14 @@
         <img src="https://maxmautner.com/public/images/django.gif" class="img"/>
         <h2 class="heading">List Of All Notes</h2>
         {% for notes in allNotes %}
-            <p class="list-title"><strong>{{notes.id}}.</strong> {{notes.title}}</p>
+            <a href="{% url 'note.detail' pk=notes.id %}" class="link" >
+                <p class="list-title">
+                    <strong>{{notes.id}}.&nbsp;  {{notes.title}}</strong>
+                    <br>{{notes.text|truncatechars:20}}
+                </p>
+            </a>
         {% endfor %}
+
     {% endblock%}
 
 
