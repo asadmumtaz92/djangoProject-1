@@ -1,4 +1,13 @@
-{% load static %}
+{% extends "base.html" %}
+
+    {% block content %}
+        <img src="https://maxmautner.com/public/images/django.gif" class="img"/>
+        <h1 class="title">{{note.title}}</h1>
+        <p class="p">{{note.text}}</p>
+    {% endblock%}
+
+
+<!-- {% load static %}
 
 <!DOCTYPE html>
 <html>
@@ -13,4 +22,4 @@
         <p class="p">{{note.text}}</p>
     </body>
 
-</html>
+</html> -->

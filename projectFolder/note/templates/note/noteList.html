@@ -1,4 +1,15 @@
-{% load static %}
+{% extends "base.html" %}
+
+    {% block content %}
+        <img src="https://maxmautner.com/public/images/django.gif" class="img"/>
+        <h2 class="heading">List Of All Notes</h2>
+        {% for notes in allNotes %}
+            <p class="list-title"><strong>{{notes.id}}.</strong> {{notes.title}}</p>
+        {% endfor %}
+    {% endblock%}
+
+
+<!-- {% load static %}
 
 <!DOCTYPE html>
 <html>
@@ -15,4 +26,4 @@
         {% endfor %}
     </body>
 
-</html>
+</html> -->
