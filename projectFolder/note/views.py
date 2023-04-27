@@ -1,9 +1,9 @@
 from django.shortcuts import render
 from django.http import Http404, HttpResponse
-from django.views.generic import ListView, CreateView
+from django.views.generic import ListView, DeleteView, CreateView, UpdateView
 
 from .models import Notes
-# from .forms import NotesForm
+from .forms import NoteForm
 
 def listOfAllNotes(request):
     allNotes = Notes.objects.all()
@@ -37,11 +37,11 @@ def noteDetail(request, pk):
 #     template_name = 'note/noteDetail.html'
 
 
-# class NoteCreateView(CreateView):
-#     model = Notes
-#     # fields = ['title', 'text']
-#     success_url = '/note/list'
-#     form_class = NotesForm
+class NoteCreateView(CreateView):
+    model = Notes
+    # fields = ['title', 'text']
+    success_url = '/note/list'
+    form_class = NoteForm
 
 
 # def submit(request):
@@ -51,3 +51,9 @@ def noteDetail(request, pk):
 #     new_note = Notes.objects.create(title=title,text=text)
 #     # new_note.save()
 #     return HttpResponse(new_note)
+
+
+class NoteUpdateView(UpdateView):
+    model = Notes
+    success_url = '/note/list'
+    form_class = NoteForm

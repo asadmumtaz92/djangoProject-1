@@ -1,18 +1,38 @@
 {% extends "base.html" %}
 
     {% block content %}
-        <!-- <img src="https://maxmautner.com/public/images/django.gif" class="img"/> -->
         <h1 class="heading">List Of All Notes</h1>
-        
-        {% for notes in allNotes %}
-            <a href="{% url 'note.detail' pk=notes.id %}" class="link" >
-                <p class="list-title">
-                    <strong>{{notes.id}}.&nbsp;  {{notes.title}}</strong>
-                    <br>{{notes.text|truncatechars:20}}
-                </p>
-            </a>
-        {% endfor %}
-
+        <p class="right"><a href="{% url 'note.new'%}" class="link-btn">Create Note</a></p>
+            
+            {% for notes in allNotes %}
+                <div style="width: 100%; border-bottom: 1px solid lightgray;">
+                    <div style="width: 70%;">
+                        <a href="{% url 'note.detail' pk=notes.id %}" class="link">
+                                <h3 style="padding: 0px; margin: 0px;">{{notes.title|truncatechars:40}}</h3>
+                            </a>
+                            <p style="padding: 0px; margin: 0px;margin-top: 10px;">{{notes.text|truncatechars:30}}</p>
+                    </div>
+                    <div style="width: 27%; margin-left: 2%; float: right;">
+                        <a href="{% url 'note.update' pk=notes.id %}" class="" >Edit</a>
+                    </div>
+                </div>
+            {% endfor %}
+            
+            <table class="mt20">
+                {% for notes in allNotes %}
+                    <tr>
+                        <td class="td">
+                            <a href="{% url 'note.detail' pk=notes.id %}" class="link">
+                                <h3 style="padding: 0px; margin: 0px;">{{notes.title|truncatechars:40}}</h3>
+                            </a>
+                            <p style="padding: 0px; margin: 0px;margin-top: 10px;">{{notes.text|truncatechars:30}}</p>
+                        </td>
+                        <td class="td">
+                            <a href="{% url 'note.update' pk=notes.id %}" class="" >Edit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
     {% endblock%}
 
 
