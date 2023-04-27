@@ -5,15 +5,17 @@
         <p class="right"><a href="{% url 'note.new'%}" class="link-btn">Create Note</a></p>
             
             {% for notes in allNotes %}
-                <div style="width: 100%; border-bottom: 1px solid lightgray;">
-                    <div style="width: 70%;">
+                <div style="width: 100%; border-bottom: 1px solid lightgray; clear: both;">
+                    <div style="width: 27%; margin-left: 2%; float: right;">
+                    </div><div style="width: 70%; padding-bottom: 5px; padding-left: 5px;">
                         <a href="{% url 'note.detail' pk=notes.id %}" class="link">
                                 <h3 style="padding: 0px; margin: 0px;">{{notes.title|truncatechars:40}}</h3>
                             </a>
-                            <p style="padding: 0px; margin: 0px;margin-top: 10px;">{{notes.text|truncatechars:30}}</p>
+                            <p style="padding: 0px; margin: 0px;margin-top: 5px; font-size: 16px;">{{notes.text|truncatechars:30}}</p>
                     </div>
                     <div style="width: 27%; margin-left: 2%; float: right;">
-                        <a href="{% url 'note.update' pk=notes.id %}" class="" >Edit</a>
+                        <a href="{% url 'note.update' pk=notes.id %}" class="right" >Edit</a> |
+                        <a href="{% url 'note.delete' pk=notes.id %}" class="right" >Delete</a>
                     </div>
                 </div>
             {% endfor %}

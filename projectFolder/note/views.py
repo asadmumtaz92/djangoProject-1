@@ -1,6 +1,11 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.http import Http404, HttpResponse
+from django.http.response import HttpResponseRedirect
 from django.views.generic import ListView, DeleteView, CreateView, UpdateView
+from django.views.generic.edit import DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Notes
 from .forms import NoteForm
@@ -25,10 +30,14 @@ def noteDetail(request, pk):
 
 # USUNG CLASS BASE
 
-# class NotesListView(ListView):
-#     model = Notes
-#     context_object_name = "allNotes"
-#     template_name = 'note/noteList.html'
+class NotesListView(LoginRequiredMixin, ListView):
+    model = Notes
+    context_object_name = "allNotes"
+    template_name = 'note/noteList.html'
+    login_url = '/admin'
+
+    def get_queryset(self):
+        return self.request.user.notes.all()
 
 
 # class NoteDetailView(ListView):
@@ -39,9 +48,14 @@ def noteDetail(request, pk):
 
 class NoteCreateView(CreateView):
     model = Notes
-    # fields = ['title', 'text']
     success_url = '/note/list'
     form_class = NoteForm
+
+    def form_valid(self, form):
+        self.object = form.save(commit=False)
+        self.object.user = self.request.user
+        self.object.save()
+        return HttpResponseRedirect(self.get_success_url())
 
 
 # def submit(request):
@@ -57,3 +71,8 @@ class NoteUpdateView(UpdateView):
     model = Notes
     success_url = '/note/list'
     form_class = NoteForm
+
+class NoteDeleteView(DeleteView):
+    model = Notes
+    success_url = '/note/list'
+    # template_name - 'note/noteDelete.html'
