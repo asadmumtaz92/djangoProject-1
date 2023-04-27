@@ -1,28 +1,17 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>Note Lists</title>
-        <style>
-            .body {
-                width: 60%;
-                margin: auto
-            }
-            .h1 {
-                text-align: center;
-                margin-top: 50px;
-            }
-            .li {
-                margin-top: 10px;
-                border-bottom: 1px solid rgba(129, 127, 127, 0.167);
-                padding-bottom: 10px;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     </head>
 
-    <body class="body">
-        <h2 class="h1">List Of All Notes</h2>
+    <body>
+        <img src="https://maxmautner.com/public/images/django.gif" class="img"/>
+        <h2 class="heading">List Of All Notes</h2>
         {% for notes in allNotes %}
-            <p class="li"><strong>{{notes.id}}.</strong> {{notes.title}}</p>
+            <p class="list-title"><strong>{{notes.id}}.</strong> {{notes.title}}</p>
         {% endfor %}
     </body>
 

@@ -1,22 +1,16 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
     <head>
         <title>Welcome</title>
-        <style>
-            .h1 {
-                text-align: center;
-                margin-top: 50px;
-            }
-            .p {
-                text-align: center;
-                margin-top: 10px;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     </head>
 
     <body>
-        <h2 class="h1">Welcome on my site.</h2>
-        <p class="p">Today is {{today}}</p>
+        <img src="https://maxmautner.com/public/images/django.gif" class="img"/>
+        <h1 class="title center">Welcome on my Django site.</h1>
+        <p class="p center">Today is {{today}}</p>
     </body>
 
 </html>
