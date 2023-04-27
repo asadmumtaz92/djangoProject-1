@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
     {% block content %}
-        <img src="https://maxmautner.com/public/images/django.gif" class="img"/>
-        <h2 class="heading">List Of All Notes</h2>
+        <!-- <img src="https://maxmautner.com/public/images/django.gif" class="img"/> -->
+        <h1 class="heading">List Of All Notes</h1>
+        
         {% for notes in allNotes %}
             <a href="{% url 'note.detail' pk=notes.id %}" class="link" >
                 <p class="list-title">
