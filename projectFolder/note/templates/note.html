@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Note Lists</title>
+    </head>
+
+    <body>
+        <h2>List if all notes.</h2>
+        <ul>
+            {% for notes in allNotes %}
+                <li>{notes.title}</li>
+            {% endfor %}
+        </ul>
+    </body>
+
+</html>
