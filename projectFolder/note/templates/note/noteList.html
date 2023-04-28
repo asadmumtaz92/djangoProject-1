@@ -1,40 +1,44 @@
 {% extends "base.html" %}
+{% load static %}
 
     {% block content %}
-        <h1 class="heading">List Of All Notes</h1>
-        <p class="right"><a href="{% url 'note.new'%}" class="link-btn">Create Note</a></p>
-            
-            {% for notes in allNotes %}
+        <div class="myForm">
+            <h1 class="">List Of All Notes</h1>
+            <p class="right"><a href="{% url 'note.new'%}" class="link-btn">Create Note</a></p>
+                
+            <!-- {% for notes in allNotes %}
                 <div style="width: 100%; border-bottom: 1px solid lightgray; clear: both;">
-                    <div style="width: 27%; margin-left: 2%; float: right;">
-                    </div><div style="width: 70%; padding-bottom: 5px; padding-left: 5px;">
+                    <div style="width: 70%; padding-bottom: 5px; padding-left: 5px;">
                         <a href="{% url 'note.detail' pk=notes.id %}" class="link">
-                                <h3 style="padding: 0px; margin: 0px;">{{notes.title|truncatechars:40}}</h3>
-                            </a>
-                            <p style="padding: 0px; margin: 0px;margin-top: 5px; font-size: 16px;">{{notes.text|truncatechars:30}}</p>
+                            <h3 style="padding: 0px; margin: 0px;">{{notes.title|truncatechars:40}}</h3>
+                        </a>
+                        <p style="padding: 0px; margin: 0px;margin-top: 5px; font-size: 16px;">{{notes.text|truncatechars:30}}</p>
                     </div>
                     <div style="width: 27%; margin-left: 2%; float: right;">
                         <a href="{% url 'note.update' pk=notes.id %}" class="right" >Edit</a> |
                         <a href="{% url 'note.delete' pk=notes.id %}" class="right" >Delete</a>
                     </div>
                 </div>
-            {% endfor %}
-            
-            <table class="mt20">
+            {% endfor %} -->
+                
+            <table class="mt30">
                 {% for notes in allNotes %}
-                    <tr>
-                        <td class="td">
+                    <tr class="col">
+                        <td class="td col">
                             <a href="{% url 'note.detail' pk=notes.id %}" class="link">
-                                <h3 style="padding: 0px; margin: 0px;">{{notes.title|truncatechars:40}}</h3>
+                                <h3 style="padding: 0px; margin: 0px;">{{notes.title|truncatechars:50}}</h3>
                             </a>
-                            <p style="padding: 0px; margin: 0px;margin-top: 10px;">{{notes.text|truncatechars:30}}</p>
+                            <p style="padding: 0px; margin: 0px;margin-top: 10px;">{{notes.text|truncatechars:40}}</p>
                         </td>
-                        <td class="td">
-                            <a href="{% url 'note.update' pk=notes.id %}" class="" >Edit</a>
+                        <td class="td col">
+                            <a href="{% url 'note.update' pk=notes.id %}" class="mr10"><img src="{% static 'icons/edit.png' %}" alt="edit icon" height="25px"/></a>
+
+                            <a href="{% url 'note.delete' pk=notes.id %}" class="ml10"><img src="{% static 'icons/trash.png' %}" alt="edit icon" height="25px"/></a>
                         </td>
                     </tr>
                 {% endfor %}
             </table>
+        </div>
     {% endblock%}
 
 

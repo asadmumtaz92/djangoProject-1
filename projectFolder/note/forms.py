@@ -12,8 +12,8 @@ class NoteForm(forms.ModelForm):
             'text' : 'Enter you note message:',
         }
         widgets = {
-            'title': forms.TextInput(attrs=({'class': 'title-input mt10'})),
-            'text': forms.Textarea(attrs=({'class': 'text-input mt30'}))
+            'title': forms.TextInput(attrs=({'class': 'input title-input mt5'})),
+            'text': forms.Textarea(attrs=({'class': 'input text-input mt5'}))
         }
 
         def clean_title(self):

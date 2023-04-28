@@ -34,7 +34,7 @@ class NotesListView(LoginRequiredMixin, ListView):
     model = Notes
     context_object_name = "allNotes"
     template_name = 'note/noteList.html'
-    login_url = '/admin'
+    login_url = '/login'
 
     def get_queryset(self):
         return self.request.user.notes.all()
@@ -50,6 +50,7 @@ class NoteCreateView(CreateView):
     model = Notes
     success_url = '/note/list'
     form_class = NoteForm
+    template_name = 'note/createNote.html'
 
     def form_valid(self, form):
         self.object = form.save(commit=False)
