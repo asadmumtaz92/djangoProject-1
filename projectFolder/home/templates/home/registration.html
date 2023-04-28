@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+    {% block content %}
+        <div class="mt30">
+            <h2 class="center">Register new user.</h2>
+            <div style="width:50%; background-color: aqua; margin: auto;padding: 40px; border-radius: 10px;">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="loginButton loginButton1" color="#390909">SUBMIT</button>
+                </form>
+            </div>
+        </div>
+    {% endblock%}

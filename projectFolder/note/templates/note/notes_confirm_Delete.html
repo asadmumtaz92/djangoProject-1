@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <p class="left ml30">
+        <a href="{% url 'note.list'%}" class="link-btn">BACK</a>
+    </p>
+    <div class="myForm">
+        <form class="mt30" method="POST">
+            {% csrf_token %}
+            <div style="width:100%">
+                <h2 class="center">
+                    Are you sure you want to delete
+                    <br>"{{notes.title|truncatechars:25}}"
+                    <br>this note.?
+                </h2>
+                <h4 class="center">This action can't be undone if you clicked on confirm.</h4>
+            </div>
+            <div style="width:60%; margin: auto;">
+                <button type="submit" class="button button30 button50A" style="background-color: red;border: none;">CONFIRM</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
