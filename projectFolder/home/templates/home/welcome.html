@@ -1,19 +1,17 @@
+{% extends "base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html>
+{% block content %}
     <head>
-        <title>Welcome</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+        <title>HOME</title>
     </head>
 
-    <body>
-        <img src="https://maxmautner.com/public/images/django.gif" class="img" height="250px"/>
-        <h1 class=" center">Welcome On My Django Site.</h1>
-        <p class="p center">Today is {{today}}</p>
+    <div>
+        <img src="{% static 'icons/logo.gif' %}" class="logo"/>
+        <h1 class="center">Welcome On My Django Site.</h1>
+        <p class="p-detail center">Today is {{today}}</p>
         <p class="p center mt30">
-            <a href="{% url 'note.list' %}" class="link-btn" >CHECK MY NOTES</a>
+            <a href="{% url 'note.list' %}" class="button button20 button50A" style="letter-spacing: 2px;">VIEW NOTES</a>
         </p>
-    </body>
-
-</html>
+    </div>
+{% endblock%}

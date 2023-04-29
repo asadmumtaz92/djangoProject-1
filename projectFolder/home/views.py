@@ -19,7 +19,7 @@ class SignUpView(CreateView):
 
 class LoginInterfaceView(LoginView):
     template_name = 'home/login.html'
-    success_url = '/home/welcome'
+    success_url = '/note/list'
 
 
 class LogoutInterfaceView(LogoutView):
