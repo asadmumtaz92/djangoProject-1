@@ -1,14 +1,18 @@
 {% extends "base.html" %}
 
-    {% block content %}
-        <div class="mt30">
-            <h2 class="center">Register new user.</h2>
-            <div style="width:50%; background-color: aqua; margin: auto;padding: 40px; border-radius: 10px;">
-                <form method="POST">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="loginButton loginButton1" color="#390909">SUBMIT</button>
-                </form>
-            </div>
+{% block content %}
+    <head>
+        <title>SIGN UP</title>
+    </head>
+
+    <div class="mt30">
+        <h2 class="mt30 center">Register New User.</h2>
+        <div style="width:50%; background-color: aqua; margin: auto;padding: 50px 60px; border-radius: 10px;">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="loginButton loginButton1" color="#390909">SUBMIT</button>
+            </form>
         </div>
-    {% endblock%}
+    </div>
+{% endblock%}

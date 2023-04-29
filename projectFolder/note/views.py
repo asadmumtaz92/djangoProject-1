@@ -10,11 +10,23 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Notes
 from .forms import NoteForm
 
+# =============== START NOTE LIST ===============
 def listOfAllNotes(request):
     allNotes = Notes.objects.all()
-    return render(request, 'note/noteList.html', {'allNotes': allNotes})
+    return render(request, 'note/noteListView.html', {'allNotes': allNotes})
+
+class NotesListView(LoginRequiredMixin, ListView):
+    model = Notes
+    context_object_name = "allNotes"
+    template_name = 'note/noteListView.html'
+    login_url = '/login'
+
+    def get_queryset(self):
+        return self.request.user.notes.all()
+# =============== END NOTE LIST ===============
 
 
+# =============== START NOTE DETAIL ===============
 def noteDetail(request, pk):
     try:
         note = Notes.objects.get(pk=pk)
@@ -23,29 +35,14 @@ def noteDetail(request, pk):
         return HttpResponse('<h1 style="text-align: center; margin-top: 100px">Notes dose not exist</h1>')
     return render(request, 'note/noteDetail.html', {'note': note})
 
-
-# def newNote(request):
-#     return render(request, 'note/notes_form.html', {})
-
-
-# USUNG CLASS BASE
-
-class NotesListView(LoginRequiredMixin, ListView):
+class NoteDetailView(ListView):
     model = Notes
-    context_object_name = "allNotes"
-    template_name = 'note/noteList.html'
-    login_url = '/login'
-
-    def get_queryset(self):
-        return self.request.user.notes.all()
+    context_object_name = "note"
+    template_name = 'note/noteDetail.html'
+# =============== END NOTE DETAIL ===============
 
 
-# class NoteDetailView(ListView):
-#     model = Notes
-#     context_object_name = "note"
-#     template_name = 'note/noteDetail.html'
-
-
+# =============== START CREATE NOTE ===============
 class NoteCreateView(CreateView):
     model = Notes
     success_url = '/note/list'
@@ -57,7 +54,31 @@ class NoteCreateView(CreateView):
         self.object.user = self.request.user
         self.object.save()
         return HttpResponseRedirect(self.get_success_url())
+# =============== END CREATE NOTE ===============
 
+
+# =============== START UPDATE NOTE ===============
+class NoteUpdateView(UpdateView):
+    model = Notes
+    success_url = '/note/list'
+    form_class = NoteForm
+    template_name = 'note/noteUpdate.html'
+# =============== END UPDATE NOTE ===============
+
+
+# =============== START DELETE NOTE ===============
+class NoteDeleteView(DeleteView):
+    model = Notes
+    success_url = '/note/list'
+    template_name = 'note/noteDelete.html'
+# =============== END DELETE NOTE ===============
+
+
+
+
+
+# def newNote(request):
+#     return render(request, 'note/notes_form.html', {})
 
 # def submit(request):
 #     print(request)
@@ -66,14 +87,3 @@ class NoteCreateView(CreateView):
 #     new_note = Notes.objects.create(title=title,text=text)
 #     # new_note.save()
 #     return HttpResponse(new_note)
-
-
-class NoteUpdateView(UpdateView):
-    model = Notes
-    success_url = '/note/list'
-    form_class = NoteForm
-
-class NoteDeleteView(DeleteView):
-    model = Notes
-    success_url = '/note/list'
-    # template_name - 'note/noteDelete.html'

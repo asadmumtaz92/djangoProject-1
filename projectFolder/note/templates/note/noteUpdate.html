@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <head>
+        <title>UPDATE NOTE</title>
+    </head>
+
+    <p class="right mr30">
+        <a href="{% url 'note.list'%}" class="link-btn">Back</a>
+    </p>
+    <h2 class="center">Edit Note</h2>
+    <div class="myForm mt30">
+        <form class="mt30" method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit" class="button button50 button50A">SUBMIT</button>
+        </form>
+    </div>
+{% endblock%}
